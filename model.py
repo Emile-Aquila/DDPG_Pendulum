@@ -90,7 +90,7 @@ class Networks:
             loss.append(tmp)
 
         loss = torch.stack(loss, dim=0).to(dev)
-        loss = -1 * torch.mean(loss, dim=0).to(dev)
+        loss = -1 * torch.sum(loss, dim=0).to(dev)
         return loss
 
     def calc_loss_critic(self, steps):
@@ -109,7 +109,7 @@ class Networks:
         # print("loss 1 {}".format(loss))
         loss = (loss**2).to(dev)
         # print("loss 2 {}".format(loss))
-        loss = torch.mean(loss, dim=0).to(dev)
+        loss = torch.sum(loss, dim=0).to(dev)
         return loss
 
     def update_target(self):
